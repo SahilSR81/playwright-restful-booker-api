@@ -59,3 +59,89 @@ def test_create_booking_missing_firstname():
 
         print(response.status)
         print(response.text())
+
+
+def test_create_booking_empty_payload():
+
+    payload = {}
+    with sync_playwright() as p:
+
+        request_context = p.request.new_context()
+
+        response = request_context.post(
+            BASE_URL + "/booking",
+            data=payload
+        )
+
+        print(response.status)
+        print(response.text())
+
+def test_create_booking_null_values():
+
+    payload = {
+        "firstname": None,
+        "lastname": None,
+        "totalprice": None,
+        "depositpaid": None,
+        "bookingdates": None
+    }
+
+    with sync_playwright() as p:
+
+        request_context = p.request.new_context()
+
+        response = request_context.post(
+            BASE_URL + "/booking",
+            data=payload
+        )
+
+        print(response.status)
+        print(response.text())
+
+def test_create_booking_special_characters():
+
+    payload = {
+        "firstname": "@#$%^&*",
+        "lastname": "<script>",
+        "totalprice": 1000,
+        "depositpaid": True,
+        "bookingdates": {
+            "checkin": "2026-01-01",
+            "checkout": "2026-01-05"
+        }
+    }
+
+    with sync_playwright() as p:
+
+        request_context = p.request.new_context()
+
+        response = request_context.post(
+            BASE_URL + "/booking",
+            data=payload
+        )
+
+        assert response.status == 200
+
+def test_create_booking_long_firstname():
+
+    payload = {
+        "firstname": "A" * 500,
+        "lastname": "Kumar",
+        "totalprice": 1000,
+        "depositpaid": True,
+        "bookingdates": {
+            "checkin": "2026-01-01",
+            "checkout": "2026-01-05"
+        }
+    }
+
+    with sync_playwright() as p:
+
+        request_context = p.request.new_context()
+
+        response = request_context.post(
+            BASE_URL + "/booking",
+            data=payload
+        )
+
+        print(response.status)
