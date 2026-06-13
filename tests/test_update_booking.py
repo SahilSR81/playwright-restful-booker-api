@@ -109,7 +109,7 @@ def test_update_invalid_booking_id():
             headers=headers
         )
 
-        assert response.status in [404, 405]
+        assert response.status == 400, (f"Expected 400 but got {response.status}")
 
 def test_update_without_token():
 
