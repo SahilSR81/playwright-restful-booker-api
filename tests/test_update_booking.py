@@ -129,3 +129,106 @@ def test_update_without_token():
         )
 
         assert response.status == 403
+
+def test_update_invalid_token():
+
+    booking_id = create_booking()
+
+    payload = {
+        "firstname": "Updated"
+    }
+
+    headers = {
+        "Cookie": "token=invalidtoken123"
+    }
+
+    with sync_playwright() as p:
+
+        request_context = p.request.new_context()
+
+        response = request_context.put(
+            BASE_URL + f"/booking/{booking_id}",
+            data=payload,
+            headers=headers
+        )
+
+        assert response.status == 403
+
+def test_update_empty_body():
+
+    booking_id = create_booking()
+
+    token = get_auth_token()
+
+    headers = {
+        "Cookie": f"token={token}"
+    }
+
+    with sync_playwright() as p:
+
+        request_context = p.request.new_context()
+
+        response = request_context.put(
+            BASE_URL + f"/booking/{booking_id}",
+            data={},
+            headers=headers
+        )
+
+        print(response.status)
+        print(response.text())
+
+def test_update_partial_body():
+
+    booking_id = create_booking()
+
+    token = get_auth_token()
+
+    headers = {
+        "Cookie": f"token={token}"
+    }
+
+    payload = {
+        "firstname": "OnlyName"
+    }
+
+    with sync_playwright() as p:
+
+        request_context = p.request.new_context()
+
+        response = request_context.put(
+            BASE_URL + f"/booking/{booking_id}",
+            data=payload,
+            headers=headers
+        )
+
+        print(response.status)
+        print(response.text())
+
+def test_update_wrong_data_type():
+
+    booking_id = create_booking()
+
+    token = get_auth_token()
+
+    headers = {
+        "Cookie": f"token={token}"
+    }
+
+    payload = {
+        "firstname": 123,
+        "lastname": True,
+        "totalprice": "one thousand"
+    }
+
+    with sync_playwright() as p:
+
+        request_context = p.request.new_context()
+
+        response = request_context.put(
+            BASE_URL + f"/booking/{booking_id}",
+            data=payload,
+            headers=headers
+        )
+
+        print(response.status)
+        print(response.text())
