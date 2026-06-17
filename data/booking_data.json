@@ -1,0 +1,12 @@
+{
+  "valid_booking": {
+    "firstname": "Sahil",
+    "lastname": "Kumar",
+    "totalprice": 1000,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2026-01-01",
+      "checkout": "2026-01-05"
+    }
+  }
+}
