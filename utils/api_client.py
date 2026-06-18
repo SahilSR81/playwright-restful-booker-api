@@ -1,5 +1,7 @@
 from playwright.sync_api import sync_playwright
 
+from utils.logger import logger
+
 
 class APIClient:
 
@@ -15,31 +17,212 @@ class APIClient:
 
     def get(self, endpoint):
 
-        return self.request_context.get(
-            self.BASE_URL + endpoint
+        logger.info("=" * 80)
+
+        logger.info(
+            f"GET REQUEST -> {endpoint}"
         )
+
+        try:
+
+            response = self.request_context.get(
+                self.BASE_URL + endpoint,
+                timeout=5000
+            )
+
+            logger.info(
+                f"STATUS CODE -> {response.status}"
+            )
+
+            logger.info(
+                f"RESPONSE BODY -> {response.text()}"
+            )
+
+            return response
+
+        except Exception as e:
+
+            logger.error(
+                f"GET REQUEST FAILED -> {str(e)}"
+            )
+
+            raise
 
     def post(self, endpoint, payload):
 
-        return self.request_context.post(
-            self.BASE_URL + endpoint,
-            data=payload
+        logger.info("=" * 80)
+
+        logger.info(
+            f"POST REQUEST -> {endpoint}"
         )
 
-    def put(self, endpoint, payload, headers=None):
-
-        return self.request_context.put(
-            self.BASE_URL + endpoint,
-            data=payload,
-            headers=headers
+        logger.info(
+            f"REQUEST BODY -> {payload}"
         )
 
-    def delete(self, endpoint, headers=None):
+        try:
 
-        return self.request_context.delete(
-            self.BASE_URL + endpoint,
-            headers=headers
+            response = self.request_context.post(
+                self.BASE_URL + endpoint,
+                data=payload,
+                timeout=5000
+            )
+
+            logger.info(
+                f"STATUS CODE -> {response.status}"
+            )
+
+            logger.info(
+                f"RESPONSE BODY -> {response.text()}"
+            )
+
+            return response
+
+        except Exception as e:
+
+            logger.error(
+                f"POST REQUEST FAILED -> {str(e)}"
+            )
+
+            raise
+
+    def put(
+            self,
+            endpoint,
+            payload,
+            headers=None
+    ):
+
+        logger.info("=" * 80)
+
+        logger.info(
+            f"PUT REQUEST -> {endpoint}"
         )
+
+        logger.info(
+            f"REQUEST BODY -> {payload}"
+        )
+
+        logger.info(
+            f"HEADERS -> {headers}"
+        )
+
+        try:
+
+            response = self.request_context.put(
+                self.BASE_URL + endpoint,
+                data=payload,
+                headers=headers,
+                timeout=5000
+            )
+
+            logger.info(
+                f"STATUS CODE -> {response.status}"
+            )
+
+            logger.info(
+                f"RESPONSE BODY -> {response.text()}"
+            )
+
+            return response
+
+        except Exception as e:
+
+            logger.error(
+                f"PUT REQUEST FAILED -> {str(e)}"
+            )
+
+            raise
+
+    def patch(
+            self,
+            endpoint,
+            payload,
+            headers=None
+    ):
+
+        logger.info("=" * 80)
+
+        logger.info(
+            f"PATCH REQUEST -> {endpoint}"
+        )
+
+        logger.info(
+            f"REQUEST BODY -> {payload}"
+        )
+
+        logger.info(
+            f"HEADERS -> {headers}"
+        )
+
+        try:
+
+            response = self.request_context.patch(
+                self.BASE_URL + endpoint,
+                data=payload,
+                headers=headers,
+                timeout=5000
+            )
+
+            logger.info(
+                f"STATUS CODE -> {response.status}"
+            )
+
+            logger.info(
+                f"RESPONSE BODY -> {response.text()}"
+            )
+
+            return response
+
+        except Exception as e:
+
+            logger.error(
+                f"PATCH REQUEST FAILED -> {str(e)}"
+            )
+
+            raise
+
+    def delete(
+            self,
+            endpoint,
+            headers=None
+    ):
+
+        logger.info("=" * 80)
+
+        logger.info(
+            f"DELETE REQUEST -> {endpoint}"
+        )
+
+        logger.info(
+            f"HEADERS -> {headers}"
+        )
+
+        try:
+
+            response = self.request_context.delete(
+                self.BASE_URL + endpoint,
+                headers=headers,
+                timeout=5000
+            )
+
+            logger.info(
+                f"STATUS CODE -> {response.status}"
+            )
+
+            logger.info(
+                f"RESPONSE BODY -> {response.text()}"
+            )
+
+            return response
+
+        except Exception as e:
+
+            logger.error(
+                f"DELETE REQUEST FAILED -> {str(e)}"
+            )
+
+            raise
 
     def close(self):
 
