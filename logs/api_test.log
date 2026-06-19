@@ -665,3 +665,123 @@
 2026-06-18 20:42:18,900 | INFO | FAILED      : 0
 2026-06-18 20:42:18,900 | INFO | PASS RATE   : 100.00%
 2026-06-18 20:42:18,900 | INFO | ================================================================================
+2026-06-19 18:00:53,414 | INFO | ================================================================================
+2026-06-19 18:00:53,414 | INFO | STARTING TEST EXECUTION
+2026-06-19 18:00:53,414 | INFO | ================================================================================
+2026-06-19 18:00:55,549 | INFO | PASSED -> tests/test_auth.py::test_generate_token
+2026-06-19 18:00:56,976 | INFO | PASSED -> tests/test_auth.py::test_wrong_username
+2026-06-19 18:00:58,581 | INFO | PASSED -> tests/test_auth.py::test_wrong_password
+2026-06-19 18:01:00,179 | INFO | PASSED -> tests/test_auth.py::test_empty_username
+2026-06-19 18:01:01,793 | INFO | PASSED -> tests/test_auth.py::test_empty_password
+2026-06-19 18:01:03,711 | INFO | PASSED -> tests/test_auth.py::test_sql_injection_payload
+2026-06-19 18:01:05,463 | INFO | PASSED -> tests/test_auth.py::test_xss_payload
+2026-06-19 18:01:05,775 | INFO | ================================================================================
+2026-06-19 18:01:05,775 | INFO | POST REQUEST -> /auth
+2026-06-19 18:01:05,776 | INFO | REQUEST BODY -> {'username': 'wrongadmin', 'password': 'password123'}
+2026-06-19 18:01:07,044 | INFO | STATUS CODE -> 200
+2026-06-19 18:01:07,046 | INFO | RESPONSE BODY -> {"reason":"Bad credentials"}
+2026-06-19 18:01:07,048 | INFO | PASSED -> tests/test_auth_parameterized.py::test_invalid_auth[wrongadmin-password123]
+2026-06-19 18:01:07,352 | INFO | ================================================================================
+2026-06-19 18:01:07,352 | INFO | POST REQUEST -> /auth
+2026-06-19 18:01:07,352 | INFO | REQUEST BODY -> {'username': 'admin', 'password': 'wrongpassword'}
+2026-06-19 18:01:08,872 | INFO | STATUS CODE -> 200
+2026-06-19 18:01:08,874 | INFO | RESPONSE BODY -> {"reason":"Bad credentials"}
+2026-06-19 18:01:08,876 | INFO | PASSED -> tests/test_auth_parameterized.py::test_invalid_auth[admin-wrongpassword]
+2026-06-19 18:01:09,196 | INFO | ================================================================================
+2026-06-19 18:01:09,196 | INFO | POST REQUEST -> /auth
+2026-06-19 18:01:09,196 | INFO | REQUEST BODY -> {'username': '', 'password': 'password123'}
+2026-06-19 18:01:10,575 | INFO | STATUS CODE -> 200
+2026-06-19 18:01:10,576 | INFO | RESPONSE BODY -> {"reason":"Bad credentials"}
+2026-06-19 18:01:10,578 | INFO | PASSED -> tests/test_auth_parameterized.py::test_invalid_auth[-password123]
+2026-06-19 18:01:10,897 | INFO | ================================================================================
+2026-06-19 18:01:10,897 | INFO | POST REQUEST -> /auth
+2026-06-19 18:01:10,897 | INFO | REQUEST BODY -> {'username': 'admin', 'password': ''}
+2026-06-19 18:01:12,169 | INFO | STATUS CODE -> 200
+2026-06-19 18:01:12,171 | INFO | RESPONSE BODY -> {"reason":"Bad credentials"}
+2026-06-19 18:01:12,174 | INFO | PASSED -> tests/test_auth_parameterized.py::test_invalid_auth[admin-]
+2026-06-19 18:01:14,115 | INFO | PASSED -> tests/test_create_booking.py::test_create_booking
+2026-06-19 18:01:15,842 | INFO | PASSED -> tests/test_create_booking.py::test_create_booking_missing_firstname
+2026-06-19 18:01:17,475 | INFO | PASSED -> tests/test_create_booking.py::test_create_booking_empty_payload
+2026-06-19 18:01:19,077 | INFO | PASSED -> tests/test_create_booking.py::test_create_booking_null_values
+2026-06-19 18:01:20,564 | INFO | PASSED -> tests/test_create_booking.py::test_create_booking_special_characters
+2026-06-19 18:01:22,037 | INFO | PASSED -> tests/test_create_booking.py::test_create_booking_long_firstname
+2026-06-19 18:01:22,337 | INFO | ================================================================================
+2026-06-19 18:01:22,337 | INFO | POST REQUEST -> /booking
+2026-06-19 18:01:22,337 | INFO | REQUEST BODY -> {'firstname': '', 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:01:23,682 | INFO | STATUS CODE -> 200
+2026-06-19 18:01:23,683 | INFO | RESPONSE BODY -> {"bookingid":435,"booking":{"firstname":"","lastname":"Kumar","totalprice":1000,"depositpaid":true,"bookingdates":{"checkin":"2026-01-01","checkout":"2026-01-05"}}}
+2026-06-19 18:01:23,684 | INFO | PASSED -> tests/test_create_booking_parameterized.py::test_create_booking_boundary_values[]
+2026-06-19 18:01:23,936 | INFO | ================================================================================
+2026-06-19 18:01:23,936 | INFO | POST REQUEST -> /booking
+2026-06-19 18:01:23,936 | INFO | REQUEST BODY -> {'firstname': 'A', 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:01:25,298 | INFO | STATUS CODE -> 200
+2026-06-19 18:01:25,300 | INFO | RESPONSE BODY -> {"bookingid":454,"booking":{"firstname":"A","lastname":"Kumar","totalprice":1000,"depositpaid":true,"bookingdates":{"checkin":"2026-01-01","checkout":"2026-01-05"}}}
+2026-06-19 18:01:25,301 | INFO | PASSED -> tests/test_create_booking_parameterized.py::test_create_booking_boundary_values[A]
+2026-06-19 18:01:25,577 | INFO | ================================================================================
+2026-06-19 18:01:25,577 | INFO | POST REQUEST -> /booking
+2026-06-19 18:01:25,577 | INFO | REQUEST BODY -> {'firstname': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:01:26,882 | INFO | STATUS CODE -> 200
+2026-06-19 18:01:26,883 | INFO | RESPONSE BODY -> {"bookingid":470,"booking":{"firstname":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","lastname":"Kumar","totalprice":1000,"depositpaid":true,"bookingdates":{"checkin":"2026-01-01","checkout":"2026-01-05"}}}
+2026-06-19 18:01:26,884 | INFO | PASSED -> tests/test_create_booking_parameterized.py::test_create_booking_boundary_values[AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]
+2026-06-19 18:01:27,128 | INFO | ================================================================================
+2026-06-19 18:01:27,128 | INFO | POST REQUEST -> /booking
+2026-06-19 18:01:27,128 | INFO | REQUEST BODY -> {'firstname': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:01:28,491 | INFO | STATUS CODE -> 200
+2026-06-19 18:01:28,493 | INFO | RESPONSE BODY -> {"bookingid":487,"booking":{"firstname":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","lastname":"Kumar","totalprice":1000,"depositpaid":true,"bookingdates":{"checkin":"2026-01-01","checkout":"2026-01-05"}}}
+2026-06-19 18:01:28,494 | INFO | PASSED -> tests/test_create_booking_parameterized.py::test_create_booking_boundary_values[AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]
+2026-06-19 18:01:33,476 | INFO | PASSED -> tests/test_delete_booking.py::test_delete_booking
+2026-06-19 18:01:38,583 | INFO | PASSED -> tests/test_delete_booking.py::test_verify_deleted_booking
+2026-06-19 18:01:43,859 | INFO | PASSED -> tests/test_delete_booking.py::test_delete_already_deleted_booking
+2026-06-19 18:01:47,257 | INFO | PASSED -> tests/test_delete_booking.py::test_delete_invalid_booking_id
+2026-06-19 18:01:50,605 | INFO | PASSED -> tests/test_delete_booking.py::test_delete_without_token
+2026-06-19 18:01:52,336 | INFO | PASSED -> tests/test_health_check.py::test_ping_endpoint
+2026-06-19 18:01:54,112 | INFO | PASSED -> tests/test_health_check.py::test_response_time
+2026-06-19 18:01:55,597 | INFO | PASSED -> tests/test_health_check.py::test_get_booking_ids
+2026-06-19 18:01:57,321 | INFO | PASSED -> tests/test_health_check.py::test_invalid_endpoint
+2026-06-19 18:01:58,934 | INFO | PASSED -> tests/test_health_check.py::test_wrong_http_method
+2026-06-19 18:01:59,195 | INFO | ================================================================================
+2026-06-19 18:01:59,195 | INFO | POST REQUEST -> /booking
+2026-06-19 18:01:59,195 | INFO | REQUEST BODY -> {'firstname': None, 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:02:00,487 | INFO | STATUS CODE -> 500
+2026-06-19 18:02:00,489 | INFO | RESPONSE BODY -> Internal Server Error
+2026-06-19 18:02:00,489 | INFO | PASSED -> tests/test_invalid_booking_data.py::test_invalid_firstname_datatypes[None]
+2026-06-19 18:02:00,803 | INFO | ================================================================================
+2026-06-19 18:02:00,803 | INFO | POST REQUEST -> /booking
+2026-06-19 18:02:00,803 | INFO | REQUEST BODY -> {'firstname': 123, 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:02:02,107 | INFO | STATUS CODE -> 500
+2026-06-19 18:02:02,109 | INFO | RESPONSE BODY -> Internal Server Error
+2026-06-19 18:02:02,110 | INFO | PASSED -> tests/test_invalid_booking_data.py::test_invalid_firstname_datatypes[123]
+2026-06-19 18:02:02,596 | INFO | ================================================================================
+2026-06-19 18:02:02,596 | INFO | POST REQUEST -> /booking
+2026-06-19 18:02:02,596 | INFO | REQUEST BODY -> {'firstname': True, 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:02:04,012 | INFO | STATUS CODE -> 500
+2026-06-19 18:02:04,014 | INFO | RESPONSE BODY -> Internal Server Error
+2026-06-19 18:02:04,014 | INFO | PASSED -> tests/test_invalid_booking_data.py::test_invalid_firstname_datatypes[True]
+2026-06-19 18:02:04,366 | INFO | ================================================================================
+2026-06-19 18:02:04,366 | INFO | POST REQUEST -> /booking
+2026-06-19 18:02:04,366 | INFO | REQUEST BODY -> {'firstname': [], 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:02:05,574 | INFO | STATUS CODE -> 500
+2026-06-19 18:02:05,575 | INFO | RESPONSE BODY -> Internal Server Error
+2026-06-19 18:02:05,576 | INFO | PASSED -> tests/test_invalid_booking_data.py::test_invalid_firstname_datatypes[firstname3]
+2026-06-19 18:02:05,855 | INFO | ================================================================================
+2026-06-19 18:02:05,855 | INFO | POST REQUEST -> /booking
+2026-06-19 18:02:05,855 | INFO | REQUEST BODY -> {'firstname': {}, 'lastname': 'Kumar', 'totalprice': 1000, 'depositpaid': True, 'bookingdates': {'checkin': '2026-01-01', 'checkout': '2026-01-05'}}
+2026-06-19 18:02:07,220 | INFO | STATUS CODE -> 500
+2026-06-19 18:02:07,226 | INFO | RESPONSE BODY -> Internal Server Error
+2026-06-19 18:02:07,227 | INFO | PASSED -> tests/test_invalid_booking_data.py::test_invalid_firstname_datatypes[firstname4]
+2026-06-19 18:02:08,932 | INFO | PASSED -> tests/test_schema_validation.py::test_auth_schema
+2026-06-19 18:02:10,452 | INFO | PASSED -> tests/test_schema_validation.py::test_booking_schema
+2026-06-19 18:02:12,052 | INFO | PASSED -> tests/test_schema_validation.py::test_booking_list_schema
+2026-06-19 18:02:16,843 | INFO | PASSED -> tests/test_update_booking.py::test_update_booking
+2026-06-19 18:02:20,048 | INFO | PASSED -> tests/test_update_booking.py::test_update_invalid_booking_id
+2026-06-19 18:02:22,982 | INFO | PASSED -> tests/test_update_booking.py::test_update_without_token
+2026-06-19 18:02:26,312 | INFO | PASSED -> tests/test_update_booking.py::test_update_invalid_token
+2026-06-19 18:02:31,226 | INFO | PASSED -> tests/test_update_booking.py::test_update_empty_body
+2026-06-19 18:02:36,108 | INFO | PASSED -> tests/test_update_booking.py::test_update_partial_body
+2026-06-19 18:02:41,203 | INFO | PASSED -> tests/test_update_booking.py::test_update_wrong_data_type
+2026-06-19 18:02:41,209 | INFO | ================================================================================
+2026-06-19 18:02:41,209 | INFO | TOTAL TESTS : 46
+2026-06-19 18:02:41,209 | INFO | PASSED      : 46
+2026-06-19 18:02:41,209 | INFO | FAILED      : 0
+2026-06-19 18:02:41,209 | INFO | PASS RATE   : 100.00%
+2026-06-19 18:02:41,209 | INFO | ================================================================================
